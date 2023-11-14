@@ -2,8 +2,13 @@ const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
 const Info = require('./models/info')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+
 
 const app = express()
+app.use(cors())
+app.use(bodyParser.json())
 mongoose.connect('mongodb://localhost:27017/weddingApp',
     {
         useNewUrlParser: true,
@@ -24,16 +29,19 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/add', async (req, res) => {
-    const add = new Info({
-        fname: "Satchit",
-        lname: "Dahal",
-        email: "satchit_dahal@hotmail.com",
-        address: "22809",
-        phone_number: "2064713787"
-    })
-    await add.save();
-    res.send(add)
+app.post('/info', async (req, res) => {
+    try {
+        const { fname, lname, email, phone_number, address } = req.body
+        const add = new Info({ fname, lname, email, phone_number, address })
+        await add.save();
+        res.status(201).json({ message: "User data added" })
+
+    }
+    catch (err) {
+        console.error(err)
+        res.status(500).json({ error: "error" })
+
+    }
 })
 
 const PORT = 5000
