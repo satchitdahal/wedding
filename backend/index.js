@@ -11,9 +11,7 @@ app.use(cors())
 app.use(bodyParser.json())
 mongoose.connect('mongodb://localhost:27017/weddingApp',
     {
-        useNewUrlParser: true,
-        // useCreateIndex: true,
-        useUnifiedTopology: true
+
     }).then(() => {
         console.log("***CONNECTION TO DATABASE SUCCESSFULL***")
 

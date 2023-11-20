@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import "../styles/infoForm.css"
+
 const InfoForm = () => {
     const [fname, setFname] = useState('')
     const [lname, setLname] = useState('')
@@ -10,19 +11,22 @@ const InfoForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await fetch('http://localhost:5000/info', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ fname, lname, email, phone_number, address })
+        try {
+            const response = await fetch('http://localhost:5000/info', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ fname, lname, email, phone_number, address }),
+            }
+            )
+            window.location.href('/thank_you.html')
+
+        }
+        catch (err) {
+            console.error(err)
         }
 
-        )
-        if (response.ok) {
-            console.log("DONE")
-        }
-        console.log("WRONG")
 
     }
     return (
