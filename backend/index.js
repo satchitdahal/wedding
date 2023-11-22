@@ -13,7 +13,6 @@ app.get("/", (req, res) => {
 })
 
 //ROUTES FOR CONTACTS START
-
 //create a contact
 app.post("/contacts", async (req, res) => {
     try {
@@ -71,10 +70,10 @@ app.delete("/contacts/:id", async (req, res) => {
         console.error(err.message)
     }
 })
-
-
 //ROUTES FOR CONTACTS END
 
+//ROUTES FOR ADDRESS
+//ROUTES FOR RSVP
 
 const PORT = 5000
 app.listen(5000, () => {

@@ -1,0 +1,21 @@
+/* App.css */
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+
+}
+
+.container-fluid {
+    margin-left: 120px;
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        padding-left: 120px;
+        /* Padding for the fixed navbar */
+    }
+}
