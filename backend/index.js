@@ -1,46 +1,80 @@
 const express = require('express')
 const path = require('path')
-const mongoose = require('mongoose')
-const Info = require('./models/info')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-
-
 const app = express()
+const cors = require("cors")
+const pool = require("./db")
+
+//middleware
 app.use(cors())
-app.use(bodyParser.json())
-mongoose.connect('mongodb://localhost:27017/weddingApp',
-    {
+app.use(express.json())
 
-    }).then(() => {
-        console.log("***CONNECTION TO DATABASE SUCCESSFULL***")
-
-    })
-    .catch(err => {
-        console.log("ERROR CONNECTING TO DB")
-        console.log(err)
-    })
-app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, 'views'))
-
-app.get('/', (req, res) => {
-    res.render('home')
+app.get("/", (req, res) => {
+    res.send("hello")
 })
 
-app.post('/info', async (req, res) => {
+//ROUTES FOR CONTACTS START
+
+//create a contact
+app.post("/contacts", async (req, res) => {
     try {
-        const { fname, lname, email, phone_number, address } = req.body
-        const add = new Info({ fname, lname, email, phone_number, address })
-        await add.save();
-        res.status(201).json({ message: "User data added" })
-
-    }
-    catch (err) {
-        console.error(err)
-        res.status(500).json({ error: "error" })
-
+        const { f_name, l_name, phone_number } = req.body
+        const new_contact = await pool.query("INSERT INTO contacts (f_name, l_name, phone_number) VALUES($1,$2,$3) RETURNING *",
+            [f_name, l_name, phone_number])
+        res.json(new_contact.rows[0])
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).json("Server error")
     }
 })
+//get all contacts
+app.get("/contacts", async (req, res) => {
+    try {
+        const all_contacts = await pool.query("SELECT * FROM contacts")
+        res.json(all_contacts.rows)
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).json("Server error")
+    }
+})
+
+//get contact/id
+app.get("/contacts/:id", async (req, res) => {
+    try {
+        const { id } = req.params
+        const contact = await pool.query("SELECT * FROM CONTACTS WHERE id = $1", [id])
+        res.json(contact.rows)
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).json("Server error")
+    }
+})
+//edit a contact
+app.put("/contacts/:id", async (req, res) => {
+    try {
+        const { id } = req.params
+        const { f_name, l_name, phone_number } = req.body
+        const update_contact = await pool.query("UPDATE CONTACTS SET f_name =$1, l_name = $2, phone_number = $3 WHERE id =$4",
+            [f_name, l_name, phone_number, id])
+        res.json("TODO was updated successfully")
+    } catch (err) {
+        console.error(err.message)
+        res.status(500).json("Server error")
+    }
+})
+//delete a contact
+app.delete("/contacts/:id", async (req, res) => {
+    try {
+        const { id } = req.params
+        const del_contact = await pool.query("DELETE FROM CONTACTS WHERE id = $1", [id])
+        res.send("DELETED FROM DB")
+    } catch (err) {
+        console.error(err.message)
+    }
+})
+
+
+//ROUTES FOR CONTACTS END
+
 
 const PORT = 5000
 app.listen(5000, () => {
