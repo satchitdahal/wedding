@@ -5,13 +5,16 @@ import Home from "./Components/Home"
 import Contacts from "./Components/Contacts";
 import Address from "./Components/Address";
 import Rsvp from "./Components/Rsvp";
+
 import "./styles/app.css"
+import InfoForm from "./Components/InfoForm";
 function App() {
   return (
     <Router>
       <div className="container-fluid">
         <div className="row">
           <Navigation />
+
           <div className="container-fluid">
 
             <Routes>
@@ -20,6 +23,7 @@ function App() {
               <Route path='/contacts' element={<Contacts />} />
               <Route path='/address' element={<Address />} />
               <Route path='/rsvp' element={<Rsvp />} />
+              <Route path="/info" element={<InfoForm />} />
             </Routes>
           </div>
         </div>
