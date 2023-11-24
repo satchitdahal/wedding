@@ -112,7 +112,60 @@ app.get("/address", async (req, res) => {
 });
 
 //edit an address
+
+// Update an address by address_id
+app.put("/address/:address_id", async (req, res) => {
+    try {
+        const { address_id } = req.params;
+        const { f_name, l_name, phone_number, street_add, city, zipcode, states } = req.body;
+
+        // Check if the address exists
+        const existingAddress = await pool.query('SELECT * FROM Address WHERE address_id = $1', [address_id]);
+
+        if (existingAddress.rows.length === 0) {
+            return res.status(404).json({ error: 'Address not found' });
+        }
+
+        // Update the address
+        const updateQuery = `
+            UPDATE Address
+            SET f_name = $1, l_name = $2, phone_number = $3, street_add = $4, city = $5, zipcode = $6, states = $7
+            WHERE address_id = $8
+            RETURNING *`;
+
+        const updatedAddress = await pool.query(updateQuery, [f_name, l_name, phone_number, street_add, city, zipcode, states, address_id]);
+
+        res.json(updatedAddress.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 //delete an address
+
+// Delete an address by address_id
+app.delete("/address/:address_id", async (req, res) => {
+    try {
+        const { address_id } = req.params;
+
+        // Check if the address exists
+        const address = await pool.query('SELECT * FROM Address WHERE address_id = $1', [address_id]);
+
+        if (address.rows.length === 0) {
+            return res.status(404).json({ error: 'Address not found' });
+        }
+
+        // Delete the address
+        await pool.query('DELETE FROM Address WHERE address_id = $1', [address_id]);
+
+        res.json({ message: 'Address deleted successfully' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 //ROUTES FOR RSVP
 
