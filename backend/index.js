@@ -5,6 +5,7 @@ const twilio = require('twilio')
 const cors = require("cors")
 const pool = require("./db")
 const bcrypt = require('bcrypt')
+const saltRound = 10;
 
 //middleware
 app.use(cors())
@@ -170,6 +171,54 @@ app.delete("/address/:address_id", async (req, res) => {
 // *********************************************************************************
 
 // login route 
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        // Fetch the user from the database by username
+        const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+
+        if (result.rows.length === 0) {
+            // User not found
+            return res.status(401).send('Invalid username or password');
+        }
+
+        const user = result.rows[0];
+
+        // Compare the entered password with the stored hash
+        const match = await bcrypt.compare(password, user.password);
+
+        if (match) {
+            // Passwords match, log in the user
+            res.send('Login successful!');
+        } else {
+            // Passwords don't match
+            res.status(401).send('Invalid username or password');
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// app.post('/hash-password', async (req, res) => {
+//     try {
+//         const { password } = req.body;
+
+//         if (!password) {
+//             return res.status(400).json({ error: 'Password is required.' });
+//         }
+
+//         const saltRounds = 10;
+//         const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+//         res.json({ hashedPassword });
+//     } catch (error) {
+//         console.error('Error hashing password:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// });
+
 
 
 
