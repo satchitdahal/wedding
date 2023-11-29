@@ -123,10 +123,10 @@ const Address = () => {
     };
 
     return (
-        <div>
+        <div className='address'>
+            <h2>Addresses</h2>
             {addresses.length > 0 && (
-                <div>
-                    <h2>Addresses</h2>
+                <div className='address_table'>
                     {loading ? (
                         <p>Loading addresses...</p>
                     ) : (

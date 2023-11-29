@@ -4,6 +4,7 @@ const app = express()
 const twilio = require('twilio')
 const cors = require("cors")
 const pool = require("./db")
+const bcrypt = require('bcrypt')
 
 //middleware
 app.use(cors())
@@ -143,8 +144,6 @@ app.put("/address/:address_id", async (req, res) => {
     }
 });
 
-//delete an address
-
 // Delete an address by address_id
 app.delete("/address/:address_id", async (req, res) => {
     try {
@@ -167,34 +166,12 @@ app.delete("/address/:address_id", async (req, res) => {
     }
 });
 
+// ROUTES FOR ADDRESS END 
+// *********************************************************************************
+
+// login route 
 
 
-//ROUTES FOR RSVP
-
-//route to handle messaging to the phone numbers using twillo
-// const accountSid = 'AC77bd55661bc47069a107ecc7c8977fb6';
-// const authToken = 'e0273da4ea6fb56603af169585a9cd25';
-
-// app.post('/send-link', async (req, res) => {
-//     try {
-//         const { from, to, link } = req.body;
-
-//         const client = twilio(accountSid, authToken);
-
-//         const message = await client.messages.create({
-//             body: `Here is your link: ${link}`,
-//             from,
-//             to,
-//         });
-
-//         console.log('Link sent. SID:', message.sid);
-
-//         res.status(200).json({ success: true, message: 'Link sent successfully' });
-//     } catch (error) {
-//         console.error('Error sending link:', error);
-//         res.status(500).json({ success: false, error: 'Failed to send link' });
-//     }
-// });
 
 const PORT = 5000
 app.listen(5000, () => {

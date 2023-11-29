@@ -28,3 +28,19 @@ dialog {
     padding: 20px;
     border-radius: 8px;
 }
+
+.contact_table {
+    max-height: 500px;
+    /* Set the maximum height for the table container */
+    overflow-y: auto;
+    /* Enable vertical scroll when content exceeds the container height */
+    border: 1px solid #ddd;
+    /* Optional: Add a border for better visibility */
+    padding: 1em;
+}
+
+/* Optional: Style for the table */
+.contact_table table {
+    width: 100%;
+    border-collapse: collapse;
+}

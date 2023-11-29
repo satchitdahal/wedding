@@ -58,7 +58,10 @@ const InfoForm = () => {
 
     return (
         <div className="infoForm">
+
             {submitted ? (
+
+
                 <div className="thankYouMessage">
                     <h3>Thank you for submitting the form!</h3>
                     <p>Your information has been received.</p>
@@ -68,6 +71,8 @@ const InfoForm = () => {
                     <div className="infoForm_desc">
                         <h3>Please fill out the following information to receive Wedding Invitations regarding Ishani and Sudur's wedding ceremony</h3>
                         <h2>The home address entered will be used to deliver the invitation card</h2>
+
+
                     </div>
                     <form onSubmit={handleSubmit} className="info_form">
                         <table>

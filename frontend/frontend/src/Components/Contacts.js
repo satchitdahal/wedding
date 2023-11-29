@@ -117,7 +117,7 @@ const Contacts = () => {
             <h2>Contacts</h2>
             {contacts.length > 0 && (
 
-                <>
+                <div className='contact_table'>
 
 
                     {
@@ -154,7 +154,7 @@ const Contacts = () => {
                             </table>
                         )
                     }
-                </>
+                </div>
             )}
 
             {/* Edit Modal */}

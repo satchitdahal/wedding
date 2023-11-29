@@ -5,6 +5,7 @@ import Home from "./Components/Home"
 import Contacts from "./Components/Contacts";
 import Address from "./Components/Address";
 import Rsvp from "./Components/Rsvp";
+import Login from "./Components/Login"
 
 import "./styles/app.css"
 import InfoForm from "./Components/InfoForm";
