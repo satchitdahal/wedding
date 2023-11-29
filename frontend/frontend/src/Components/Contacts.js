@@ -114,46 +114,61 @@ const Contacts = () => {
     return (
 
         <div className='contacts'>
-
             <h2>Contacts</h2>
+            {contacts.length > 0 && (
 
-            {loading ? (
-                <p>Loading contacts...</p>
-            ) : (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone Number</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {contacts.map((contact) => (
-                            <tr key={contact.id}>
-                                <td>{contact.f_name}</td>
-                                <td>{contact.l_name}</td>
-                                <td>{contact.phone_number}</td>
-                                <td>
-                                    <button onClick={() => handleEdit(contact)}>Edit</button>
-                                    <button onClick={() => handleDelete(contact.id)}>Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <>
+
+
+                    {
+                        loading ? (
+                            <p> Loading contacts...</p>
+                        ) : (
+
+                            <table>
+
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+
+
+                                <tbody>
+                                    {contacts.map((contact) => (
+                                        <tr key={contact.id}>
+                                            <td>{contact.f_name}</td>
+                                            <td>{contact.l_name}</td>
+                                            <td>{contact.phone_number}</td>
+                                            <td>
+                                                <button onClick={() => handleEdit(contact)}>Edit</button>
+                                                <button onClick={() => handleDelete(contact.id)}>Delete</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )
+                    }
+                </>
             )}
 
             {/* Edit Modal */}
-            {showEditModal && (
-                <EditContactModal
-                    editingContact={editingContact}
-                    setEditingContact={setEditingContact}
-                    handleEditSubmit={handleEditSubmit}
-                    handleCloseEditModal={handleCloseEditModal}
-                />
-            )}
+            {
+                showEditModal && (
+                    <EditContactModal
+
+                        editingContact={editingContact}
+                        setEditingContact={setEditingContact}
+                        handleEditSubmit={handleEditSubmit}
+                        handleCloseEditModal={handleCloseEditModal}
+                    />
+                )
+            }
 
 
             <h2>Add Contact</h2>
@@ -188,7 +203,7 @@ const Contacts = () => {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div >
 
     );
 };
@@ -201,55 +216,65 @@ const EditContactModal = ({
 }) => (
     <dialog open>
         <div className="modal-container">
-            <h2>Edit Contact</h2>
-            <form>
-                <label>
-                    First Name:
-                    <input
-                        type="text"
-                        name="f_name"
-                        value={editingContact.f_name}
-                        onChange={(e) =>
-                            setEditingContact((prevContact) => ({ ...prevContact, f_name: e.target.value }))
-                        }
-                    />
-                </label>
-                <br />
-                <label>
-                    Last Name:
-                    <input
-                        type="text"
-                        name="l_name"
-                        value={editingContact.l_name}
-                        onChange={(e) =>
-                            setEditingContact((prevContact) => ({ ...prevContact, l_name: e.target.value }))
-                        }
-                    />
-                </label>
-                <br />
-                <label>
-                    Phone Number:
-                    <input
-                        type="text"
-                        name="phone_number"
-                        value={editingContact.phone_number}
-                        onChange={(e) =>
-                            setEditingContact((prevContact) => ({ ...prevContact, phone_number: e.target.value }))
-                        }
-                    />
-                </label>
-                <br />
+            <table>
+                <thead>
+                    <tr>
+                        <th colSpan="2">Edit Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First Name:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="f_name"
+                                value={editingContact.f_name}
+                                onChange={(e) =>
+                                    setEditingContact((prevContact) => ({ ...prevContact, f_name: e.target.value }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="l_name"
+                                value={editingContact.l_name}
+                                onChange={(e) =>
+                                    setEditingContact((prevContact) => ({ ...prevContact, l_name: e.target.value }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="phone_number"
+                                value={editingContact.phone_number}
+                                onChange={(e) =>
+                                    setEditingContact((prevContact) => ({ ...prevContact, phone_number: e.target.value }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div className="modal-buttons">
                 <button type="button" onClick={handleEditSubmit}>
                     Submit
                 </button>
                 <button type="button" onClick={handleCloseEditModal}>
                     Close
                 </button>
-            </form>
+            </div>
         </div>
     </dialog>
 );
-
 
 export default Contacts;
 

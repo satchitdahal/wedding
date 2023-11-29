@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "../styles/address.css"
 
 const Address = () => {
     const [addresses, setAddresses] = useState([]);
@@ -176,78 +177,90 @@ const Address = () => {
 
             <h2>Add Address</h2>
             <form onSubmit={handleSubmit}>
-                <label>
-                    First Name:
-                    <input
-                        type="text"
-                        name="f_name"
-                        value={newAddress.f_name}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Last Name:
-                    <input
-                        type="text"
-                        name="l_name"
-                        value={newAddress.l_name}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Phone Number:
-                    <input
-                        type="text"
-                        name="phone_number"
-                        value={newAddress.phone_number}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Street Address:
-                    <input
-                        type="text"
-                        name="street_add"
-                        value={newAddress.street_add}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    City:
-                    <input
-                        type="text"
-                        name="city"
-                        value={newAddress.city}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Zipcode:
-                    <input
-                        type="text"
-                        name="zipcode"
-                        value={newAddress.zipcode}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    State:
-                    <input
-                        type="text"
-                        name="states"
-                        value={newAddress.states}
-                        onChange={handleChange}
-                    />
-                </label>
-                <br />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>First Name:</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="f_name"
+                                    value={newAddress.f_name}
+                                    onChange={handleChange}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="l_name"
+                                    value={newAddress.l_name}
+                                    onChange={handleChange}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number:</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="phone_number"
+                                    value={newAddress.phone_number}
+                                    onChange={handleChange}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Street Address:</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="street_add"
+                                    value={newAddress.street_add}
+                                    onChange={handleChange}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>City:</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="city"
+                                    value={newAddress.city}
+                                    onChange={handleChange}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Zipcode:</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="zipcode"
+                                    value={newAddress.zipcode}
+                                    onChange={handleChange}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>State:</td>
+                            <td>
+                                <input
+                                    type="text"
+                                    name="states"
+                                    value={newAddress.states}
+                                    onChange={handleChange}
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <button type="submit">Submit</button>
             </form>
+
         </div>
     );
 };
@@ -258,101 +271,141 @@ const EditAddressModal = ({
     handleEditSubmit,
     handleCloseEditModal,
 }) => (
-    <div className="edit-modal">
-        <h2>Edit Address</h2>
-        <form>
-            <label>
-                First Name:
-                <input
-                    type="text"
-                    name="f_name"
-                    value={editingAddress.f_name}
-                    onChange={(e) =>
-                        setEditingAddress((prevAddress) => ({ ...prevAddress, f_name: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                Last Name:
-                <input
-                    type="text"
-                    name="l_name"
-                    value={editingAddress.l_name}
-                    onChange={(e) =>
-                        setEditingAddress((prevAddress) => ({ ...prevAddress, l_name: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                Phone Number:
-                <input
-                    type="text"
-                    name="phone_number"
-                    value={editingAddress.phone_number}
-                    onChange={(e) =>
-                        setEditingAddress((prevAddress) => ({ ...prevAddress, phone_number: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                Street Address:
-                <input
-                    type="text"
-                    name="street_add"
-                    value={editingAddress.street_add}
-                    onChange={(e) =>
-                        setEditingAddress((prevAddress) => ({ ...prevAddress, street_add: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                City:
-                <input
-                    type="text"
-                    name="city"
-                    value={editingAddress.city}
-                    onChange={(e) =>
-                        setEditingAddress((prevAddress) => ({ ...prevAddress, city: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                Zipcode:
-                <input
-                    type="text"
-                    name="zipcode"
-                    value={editingAddress.zipcode}
-                    onChange={(e) =>
-                        setEditingAddress((prevAddress) => ({ ...prevAddress, zipcode: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                State:
-                <input
-                    type="text"
-                    name="states"
-                    value={editingAddress.states}
-                    onChange={(e) =>
-                        setEditingAddress((prevAddress) => ({ ...prevAddress, states: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <button type="button" onClick={handleEditSubmit}>
-                Submit
-            </button>
-            <button type="button" onClick={handleCloseEditModal}>
-                Close
-            </button>
-        </form>
-    </div>
+    <dialog open>
+        <div className="modal-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th colSpan="2">Edit Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First Name:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="f_name"
+                                value={editingAddress.f_name}
+                                onChange={(e) =>
+                                    setEditingAddress((prevAddress) => ({
+                                        ...prevAddress,
+                                        f_name: e.target.value,
+                                    }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="l_name"
+                                value={editingAddress.l_name}
+                                onChange={(e) =>
+                                    setEditingAddress((prevAddress) => ({
+                                        ...prevAddress,
+                                        l_name: e.target.value,
+                                    }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="phone_number"
+                                value={editingAddress.phone_number}
+                                onChange={(e) =>
+                                    setEditingAddress((prevAddress) => ({
+                                        ...prevAddress,
+                                        phone_number: e.target.value,
+                                    }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Street Address:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="street_add"
+                                value={editingAddress.street_add}
+                                onChange={(e) =>
+                                    setEditingAddress((prevAddress) => ({
+                                        ...prevAddress,
+                                        street_add: e.target.value,
+                                    }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>City:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="city"
+                                value={editingAddress.city}
+                                onChange={(e) =>
+                                    setEditingAddress((prevAddress) => ({
+                                        ...prevAddress,
+                                        city: e.target.value,
+                                    }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Zipcode:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="zipcode"
+                                value={editingAddress.zipcode}
+                                onChange={(e) =>
+                                    setEditingAddress((prevAddress) => ({
+                                        ...prevAddress,
+                                        zipcode: e.target.value,
+                                    }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State:</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="states"
+                                value={editingAddress.states}
+                                onChange={(e) =>
+                                    setEditingAddress((prevAddress) => ({
+                                        ...prevAddress,
+                                        states: e.target.value,
+                                    }))
+                                }
+                            />
+                        </td>
+                    </tr>
+                    {/* Add more rows for additional fields */}
+                </tbody>
+            </table>
+            <div className="modal-buttons">
+                <button type="button" onClick={handleEditSubmit}>
+                    Submit
+                </button>
+                <button type="button" onClick={handleCloseEditModal}>
+                    Close
+                </button>
+            </div>
+        </div>
+    </dialog>
 );
+
 
 export default Address;
