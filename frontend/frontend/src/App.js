@@ -11,24 +11,23 @@ import InfoForm from "./Components/InfoForm";
 function App() {
   return (
     <Router>
+      {/* <Navigation /> */}
       <div className="container">
-        <div className="row">
-          <Navigation />
 
-          <div className="container-fluid">
+        <Navigation />
+        <div className="container-fluid">
+          <Routes>
 
-            <Routes>
+            <Route path='/' exact element={<Home />} />
+            <Route path='/contacts' element={<Contacts />} />
+            <Route path='/address' element={<Address />} />
+            <Route path='/rsvp' element={<Rsvp />} />
+            <Route path="/info" element={<InfoForm />} />
 
-              <Route path='/' element={<Home />} />
-              <Route path='/contacts' element={<Contacts />} />
-              <Route path='/address' element={<Address />} />
-              <Route path='/rsvp' element={<Rsvp />} />
-              <Route path="/info" element={<InfoForm />} />
-            </Routes>
-          </div>
+          </Routes>
         </div>
       </div>
-      {/* <InfoForm /> */}
+
     </Router>
 
 

@@ -9,7 +9,15 @@ body {
     /* display: flex; */
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 .container-fluid {
-    margin-left-min: 15%;
+    /* margin-left-min: 15%; */
     /* Adjust as needed */
+    margin-top: 2em;
 }
