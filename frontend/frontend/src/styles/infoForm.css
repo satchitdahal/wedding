@@ -1,6 +1,21 @@
+.infoform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
 .info_form {
     display: flex;
     flex-direction: column;
     align-items: center;
 
+
+}
+
+.infoForm_desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

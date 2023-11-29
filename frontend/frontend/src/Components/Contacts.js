@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import "../styles/contacts.css"
 const Contacts = () => {
     const [contacts, setContacts] = useState([]);
     const [newContact, setNewContact] = useState({
@@ -112,49 +112,49 @@ const Contacts = () => {
     };
 
     return (
-        <div>
-            {contacts.length > 0 && (
-                <div>
-                    <h2>Contacts</h2>
-                    {loading ? (
-                        <p>Loading contacts...</p>
-                    ) : (
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Phone Number</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {contacts.map((contact) => (
-                                    <tr key={contact.id}>
-                                        <td>{contact.f_name}</td>
-                                        <td>{contact.l_name}</td>
-                                        <td>{contact.phone_number}</td>
-                                        <td>
-                                            <button onClick={() => handleEdit(contact)}>Edit</button>
-                                            <button onClick={() => handleDelete(contact.id)}>Delete</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    )}
 
-                    {/* Edit Modal */}
-                    {showEditModal && (
-                        <EditContactModal
-                            editingContact={editingContact}
-                            setEditingContact={setEditingContact}
-                            handleEditSubmit={handleEditSubmit}
-                            handleCloseEditModal={handleCloseEditModal}
-                        />
-                    )}
-                </div>
+        <div className='contacts'>
+
+            <h2>Contacts</h2>
+
+            {loading ? (
+                <p>Loading contacts...</p>
+            ) : (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {contacts.map((contact) => (
+                            <tr key={contact.id}>
+                                <td>{contact.f_name}</td>
+                                <td>{contact.l_name}</td>
+                                <td>{contact.phone_number}</td>
+                                <td>
+                                    <button onClick={() => handleEdit(contact)}>Edit</button>
+                                    <button onClick={() => handleDelete(contact.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             )}
+
+            {/* Edit Modal */}
+            {showEditModal && (
+                <EditContactModal
+                    editingContact={editingContact}
+                    setEditingContact={setEditingContact}
+                    handleEditSubmit={handleEditSubmit}
+                    handleCloseEditModal={handleCloseEditModal}
+                />
+            )}
+
 
             <h2>Add Contact</h2>
             <table>
@@ -189,6 +189,7 @@ const Contacts = () => {
                 </tbody>
             </table>
         </div>
+
     );
 };
 
@@ -198,53 +199,58 @@ const EditContactModal = ({
     handleEditSubmit,
     handleCloseEditModal,
 }) => (
-    <div className="edit-modal">
-        <h2>Edit Contact</h2>
-        <form>
-            <label>
-                First Name:
-                <input
-                    type="text"
-                    name="f_name"
-                    value={editingContact.f_name}
-                    onChange={(e) =>
-                        setEditingContact((prevContact) => ({ ...prevContact, f_name: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                Last Name:
-                <input
-                    type="text"
-                    name="l_name"
-                    value={editingContact.l_name}
-                    onChange={(e) =>
-                        setEditingContact((prevContact) => ({ ...prevContact, l_name: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <label>
-                Phone Number:
-                <input
-                    type="text"
-                    name="phone_number"
-                    value={editingContact.phone_number}
-                    onChange={(e) =>
-                        setEditingContact((prevContact) => ({ ...prevContact, phone_number: e.target.value }))
-                    }
-                />
-            </label>
-            <br />
-            <button type="button" onClick={handleEditSubmit}>
-                Submit
-            </button>
-            <button type="button" onClick={handleCloseEditModal}>
-                Close
-            </button>
-        </form>
-    </div>
+    <dialog open>
+        <div className="modal-container">
+            <h2>Edit Contact</h2>
+            <form>
+                <label>
+                    First Name:
+                    <input
+                        type="text"
+                        name="f_name"
+                        value={editingContact.f_name}
+                        onChange={(e) =>
+                            setEditingContact((prevContact) => ({ ...prevContact, f_name: e.target.value }))
+                        }
+                    />
+                </label>
+                <br />
+                <label>
+                    Last Name:
+                    <input
+                        type="text"
+                        name="l_name"
+                        value={editingContact.l_name}
+                        onChange={(e) =>
+                            setEditingContact((prevContact) => ({ ...prevContact, l_name: e.target.value }))
+                        }
+                    />
+                </label>
+                <br />
+                <label>
+                    Phone Number:
+                    <input
+                        type="text"
+                        name="phone_number"
+                        value={editingContact.phone_number}
+                        onChange={(e) =>
+                            setEditingContact((prevContact) => ({ ...prevContact, phone_number: e.target.value }))
+                        }
+                    />
+                </label>
+                <br />
+                <button type="button" onClick={handleEditSubmit}>
+                    Submit
+                </button>
+                <button type="button" onClick={handleCloseEditModal}>
+                    Close
+                </button>
+            </form>
+        </div>
+    </dialog>
 );
 
+
 export default Contacts;
+
+

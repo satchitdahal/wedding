@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navigation from "./Components/Navigation";
 import Home from "./Components/Home"
@@ -11,7 +11,7 @@ import InfoForm from "./Components/InfoForm";
 function App() {
   return (
     <Router>
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           <Navigation />
 

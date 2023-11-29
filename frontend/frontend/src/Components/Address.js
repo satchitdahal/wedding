@@ -32,6 +32,8 @@ const Address = () => {
     };
 
     const handleChange = (e) => {
+        //name is the name of the element 
+        //value is the current value of the element
         const { name, value } = e.target;
         setNewAddress((prevAddress) => ({ ...prevAddress, [name]: value }));
     };

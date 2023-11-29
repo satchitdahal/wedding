@@ -14,6 +14,12 @@ const InfoForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Form validation logic
+        if (!f_name || !l_name || !phone_number || !street_add || !city || !zipcode || !states) {
+            alert('Please fill out all the required fields.');
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:5000/address', {
                 method: "POST",
@@ -48,6 +54,7 @@ const InfoForm = () => {
             console.error(err);
         }
     };
+
 
     return (
         <div className="infoForm">

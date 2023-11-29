@@ -3,31 +3,34 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 120px;
-    background-color: #941515;
+    height: 100%;
+    width: 10%;
+    /* Adjust as needed */
+    background-color: #cf4747;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     color: white;
     z-index: 1;
 }
 
-.nav-item {
-    padding: 10px;
+.navbar div {
+    padding: 1em;
     width: 100%;
     box-sizing: border-box;
 }
 
-.nav-item a {
+.navbar div a {
+    font-size: 1.2em;
+    /* Adjust as needed */
     text-decoration: none;
-    color: white;
+    color: rgb(250, 249, 249);
     width: 100%;
-    /* Full width of the navbar item */
     box-sizing: border-box;
+    align-self: auto;
 }
 
 .nav-item:hover {
-    background-color: #555;
+    background-color: #6d2323;
 }
