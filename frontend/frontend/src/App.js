@@ -20,9 +20,10 @@ function App() {
     return isLoggedIn ? (
       element
     ) : (
-      <Navigate to="/login" replace state={{ from: rest.location }} />
+      <Navigate to="/" replace state={{ from: rest.location }} />
     );
   };
+
 
   return (
     <Router>

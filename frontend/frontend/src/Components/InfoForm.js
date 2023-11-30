@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/infoForm.css";
-
+import rose from "../styles/pictures/rose.jpg"
 const InfoForm = () => {
     const [f_name, setFname] = useState('');
     const [l_name, setLname] = useState('');
@@ -57,25 +57,107 @@ const InfoForm = () => {
 
 
     return (
-        <div className="infoForm">
-
-            {submitted ? (
+        <div className="info_container">
 
 
-                <div className="thankYouMessage">
-                    <h3>Thank you for submitting the form!</h3>
-                    <p>Your information has been received.</p>
-                </div>
-            ) : (
-                <div>
-                    <div className="infoForm_desc">
-                        <h3>Please fill out the following information to receive Wedding Invitations regarding Ishani and Sudur's wedding ceremony</h3>
-                        <h2>The home address entered will be used to deliver the invitation card</h2>
+            <h1>ISHANI AND SUDUR</h1>
+            <p>Would like to collect your address infomation for wedding invitations</p>
+
+            <div className="infoForm">
+
+                {submitted ? (
 
 
+                    <div className="thankYouMessage">
+                        <h3>Thank you for submitting the form!</h3>
+                        <p>Your information has been received.</p>
                     </div>
+                ) : (
+
+
                     <form onSubmit={handleSubmit} className="info_form">
-                        <table>
+                        {/* row 1 */}
+                        <div className="row">
+
+                            <div className="column">
+                                <label for="First Name">First Name</label>
+                                <input
+                                    type="text"
+                                    placeholder="First Name"
+                                    value={f_name}
+                                    onChange={(e) => setFname(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="column">
+                                <label for="Last Name">Last Name</label>
+                                <input
+                                    type="text"
+                                    placeholder="Last Name"
+                                    value={l_name}
+                                    onChange={(e) => setLname(e.target.value)}
+                                />
+                            </div>
+                        </div>
+
+                        {/* row 2 */}
+                        <div className="row">
+
+                            <div className="column">
+                                <label for="Phone Number">Phone Number</label>
+                                <input
+                                    type="text"
+                                    placeholder="Phone Number"
+                                    value={phone_number}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="column">
+                                <label for="Street">Street Address</label>
+                                <input
+                                    type="text"
+                                    placeholder="Street Address"
+                                    value={street_add}
+                                    onChange={(e) => setStreetAdd(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        {/* row 3 */}
+                        <div className="row">
+                            <div className="column">
+                                <label for="City ">City</label>
+                                <input
+                                    type="text"
+                                    placeholder="City"
+                                    value={city}
+                                    onChange={(e) => setCity(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="column">
+                                <label for="Zipcode">Zipcode</label>
+                                <input
+                                    type="text"
+                                    placeholder="Zipcode"
+                                    value={zipcode}
+                                    onChange={(e) => setZipcode(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="column">
+                                <label for="State">State</label>
+                                <input
+                                    type="text"
+                                    placeholder="State"
+                                    value={states}
+                                    onChange={(e) => setStates(e.target.value)}
+                                />
+                            </div>
+
+                        </div>
+                        {/* <table>
                             <tr>
                                 <td>
                                     <input
@@ -146,12 +228,14 @@ const InfoForm = () => {
                                     />
                                 </td>
                             </tr>
-                        </table>
+                        </table> */}
                         <button type="submit">Submit</button>
                     </form>
-                </div>
-            )}
-        </div>
+
+                )}
+            </div>
+
+        </div >
     );
 };
 
