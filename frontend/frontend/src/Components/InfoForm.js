@@ -241,7 +241,7 @@
 // export default InfoForm;
 import React, { useState } from "react";
 import "../styles/infoForm.css";
-import rose from "../styles/pictures/rose.jpg";
+// import rose from "../styles/pictures/rose.jpg";
 
 const InfoForm = () => {
     const [f_name, setFname] = useState('');

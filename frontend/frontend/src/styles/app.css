@@ -1,5 +1,5 @@
 /* App.css */
-/* *,
+*,
 *:before,
 *:after {
     padding: 0;
@@ -7,7 +7,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
-} */
+}
 
 /* 
 {
@@ -17,10 +17,13 @@
 
 * {
     box-sizing: border-box;
+    /* margin: 8px; */
+
 
 }
 
 body {
+    display: flex;
     height: 100vh;
     background: linear-gradient(135deg,
             #aa4b6b, #6b6b83, #3b8d99, #571b2f)
